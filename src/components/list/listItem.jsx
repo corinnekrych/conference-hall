@@ -5,9 +5,19 @@ import cn from 'classnames'
 import './listItem.css'
 
 const ListItem = ({
-  onSelect, info, title, subtitle, renderActions,
+  onSelect,
+  info,
+  title,
+  subtitle,
+  renderActions,
+  style,
 }) => (
-  <div className={cn('list-item', { clickable: onSelect })} onClick={onSelect} role="button">
+  <div
+    className={cn('list-item', { clickable: onSelect })}
+    style={style}
+    onClick={onSelect}
+    role="button"
+  >
     <div>
       <div className="list-item-title">{title}</div>
       {subtitle && <div className=" list-item-subtitle">{subtitle}</div>}
@@ -23,6 +33,7 @@ ListItem.propTypes = {
   title: PropTypes.node,
   subtitle: PropTypes.node,
   info: PropTypes.node,
+  style: PropTypes.object,
 }
 
 ListItem.defaultProps = {
@@ -31,6 +42,7 @@ ListItem.defaultProps = {
   title: undefined,
   subtitle: undefined,
   info: undefined,
+  style: undefined,
 }
 
 export default ListItem

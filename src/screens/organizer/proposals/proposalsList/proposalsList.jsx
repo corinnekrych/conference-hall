@@ -1,25 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import UnlimitedList from 'react-unlimited'
 
 import { withSizes } from 'styles/utils'
-import { List, ListItem } from 'components/list'
+import { ListItem } from 'components/list'
 import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import './proposalsList.css'
 
 const Proposals = ({
-  eventId, proposals, onSelect, isMobile,
+  eventId,
+  proposals,
+  onSelect,
+  isMobile,
+  scrollerRef,
 }) => (
-  <List
-    className="event-proposals"
-    array={proposals}
-    renderRow={proposal => (
+  <UnlimitedList
+    className="list event-proposals"
+    length={proposals.length}
+    rowHeight={75}
+    overscan={2}
+    scrollerRef={scrollerRef}
+    renderRow={({ index, style }) => (
       <ListItem
-        key={proposal.id}
-        title={proposal.title}
-        subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposal} />}
-        info={<ProposalInfo proposal={proposal} isMobile={isMobile} />}
-        onSelect={() => onSelect(eventId, proposal.id)}
+        key={proposals[index].id}
+        title={proposals[index].title}
+        style={style}
+        subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposals[index]} />}
+        info={<ProposalInfo proposal={proposals[index]} isMobile={isMobile} />}
+        onSelect={() => onSelect(eventId, proposals[index].id)}
       />
     )}
   />
@@ -30,6 +39,7 @@ Proposals.propTypes = {
   proposals: PropTypes.arrayOf(PropTypes.object),
   onSelect: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
+  scrollerRef: PropTypes.any.isRequired,
 }
 
 Proposals.defaultProps = {

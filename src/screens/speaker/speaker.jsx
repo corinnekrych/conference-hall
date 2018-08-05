@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { compose } from 'redux'
 import forRoute from 'hoc-little-router'
 
@@ -19,19 +19,26 @@ import InviteSpeaker from './inviteSpeaker'
 
 const Speaker = () => (
   <AppLayout sidebar={<Sidebar />}>
-    <SidebarMobile />
-    <Profile />
-    <TalkCreate />
-    <TalkEdit />
-    <TalkSubmission />
-    <Talk />
-    <MyTalks />
-    <EventPage />
-    <EventSubmission />
-    <EventSurvey />
-    <InviteSpeaker />
-    <Contributors />
+    {() => (
+      <Fragment>
+        <SidebarMobile />
+        <Profile />
+        <TalkCreate />
+        <TalkEdit />
+        <TalkSubmission />
+        <Talk />
+        <MyTalks />
+        <EventPage />
+        <EventSubmission />
+        <EventSurvey />
+        <InviteSpeaker />
+        <Contributors />
+      </Fragment>
+    )}
   </AppLayout>
 )
 
-export default compose(forRoute('HOME_SPEAKER'), protect)(Speaker)
+export default compose(
+  forRoute('HOME_SPEAKER'),
+  protect,
+)(Speaker)

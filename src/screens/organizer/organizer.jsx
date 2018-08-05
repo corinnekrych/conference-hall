@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { compose } from 'redux'
 import forRoute from 'hoc-little-router'
 
@@ -22,20 +22,28 @@ import Proposal from './proposal'
 
 const Organizer = () => (
   <AppLayout sidebar={<Sidebar />}>
-    <SidebarMobile />
-    <EventCreate />
-    <EventEdit />
-    <Event />
-    <MyEvents />
-    <OrganizationCreate />
-    <OrganizationEdit />
-    <OrganizationPage />
-    <MyOrganizations />
-    <InviteOrganizer />
-    <Proposals />
-    <Proposal />
-    <Contributors />
+    {mainRef => (
+      <Fragment>
+        <SidebarMobile />
+        <EventCreate />
+        <EventEdit />
+        <Event />
+        <MyEvents />
+        <OrganizationCreate />
+        <OrganizationEdit />
+        <OrganizationPage />
+        <MyOrganizations />
+        <InviteOrganizer />
+        <Proposals scrollerRef={mainRef} />
+        <Proposal />
+        <Contributors />
+      </Fragment>
+    )}
   </AppLayout>
 )
 
-export default compose(forRoute('HOME_ORGANIZER'), protect, restrictBeta)(Organizer)
+export default compose(
+  forRoute('HOME_ORGANIZER'),
+  protect,
+  restrictBeta,
+)(Organizer)

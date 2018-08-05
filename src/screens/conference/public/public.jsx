@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import forRoute from 'hoc-little-router'
 
 import AppLayout from 'layout'
@@ -8,8 +8,12 @@ import Event from './event'
 
 const Public = () => (
   <AppLayout>
-    <Event />
-    <Contributors />
+    {() => (
+      <Fragment>
+        <Event />
+        <Contributors />
+      </Fragment>
+    )}
   </AppLayout>
 )
 

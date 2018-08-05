@@ -9,7 +9,12 @@ import ProposalFilters from './proposalFilters'
 import ProposalsList from './proposalsList'
 import ProposalsCards from './proposalsCards'
 
-const Proposals = ({ eventId, nbProposals, route }) => {
+const Proposals = ({
+  eventId,
+  nbProposals,
+  route,
+  scrollerRef,
+}) => {
   const title = nbProposals > 0 ? `Proposals (${nbProposals})` : 'Proposals'
   return (
     <div>
@@ -28,7 +33,7 @@ const Proposals = ({ eventId, nbProposals, route }) => {
         </Button>
       </Titlebar>
       <ProposalFilters eventId={eventId} />
-      <ProposalsList eventId={eventId} />
+      <ProposalsList eventId={eventId} scrollerRef={scrollerRef} />
       <ProposalsCards eventId={eventId} />
     </div>
   )
@@ -38,6 +43,7 @@ Proposals.propTypes = {
   eventId: PropTypes.string.isRequired,
   route: PropTypes.string.isRequired,
   nbProposals: PropTypes.number.isRequired,
+  scrollerRef: PropTypes.any.isRequired,
 }
 
 export default Proposals
