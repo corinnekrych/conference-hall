@@ -19,7 +19,7 @@ const Proposals = ({
     className="list event-proposals"
     length={proposals.length}
     rowHeight={75}
-    overscan={10}
+    overscan={5}
     scrollerRef={scrollerRef}
     renderRow={({ index, style }) => (
       <ListItem
