@@ -43,7 +43,11 @@ Proposals.propTypes = {
   eventId: PropTypes.string.isRequired,
   route: PropTypes.string.isRequired,
   nbProposals: PropTypes.number.isRequired,
-  scrollerRef: PropTypes.any.isRequired,
+  scrollerRef: PropTypes.any,
+}
+
+Proposals.defaultProps = {
+  scrollerRef: undefined,
 }
 
 export default Proposals

@@ -19,7 +19,7 @@ const Proposals = ({
     className="list event-proposals"
     length={proposals.length}
     rowHeight={75}
-    overscan={2}
+    overscan={10}
     scrollerRef={scrollerRef}
     renderRow={({ index, style }) => (
       <ListItem
@@ -39,11 +39,12 @@ Proposals.propTypes = {
   proposals: PropTypes.arrayOf(PropTypes.object),
   onSelect: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  scrollerRef: PropTypes.any.isRequired,
+  scrollerRef: PropTypes.any,
 }
 
 Proposals.defaultProps = {
   proposals: [],
+  scrollerRef: undefined,
 }
 
 export default withSizes(Proposals)
