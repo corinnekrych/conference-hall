@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import UnlimitedList from 'react-unlimited'
+import { UnlimitedList } from 'react-unlimited'
 
 import { withSizes } from 'styles/utils'
 import { ListItem } from 'components/list'
@@ -19,7 +19,7 @@ const Proposals = ({
     className="list event-proposals"
     length={proposals.length}
     rowHeight={75}
-    overscan={5}
+    overscan={10}
     scrollerRef={scrollerRef}
     renderRow={({ index, style }) => (
       <ListItem
