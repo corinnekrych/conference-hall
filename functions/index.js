@@ -12,6 +12,8 @@ exports.api = require('./api')
 
 // functions for direct calls
 const { submitTalk, unsubmitTalk } = require('./direct/submission')
+const { submitJud } = require('./direct/submitJUD')
 
 exports.submitTalk = submitTalk
 exports.unsubmitTalk = unsubmitTalk
+exports.submitJud = submitJud
