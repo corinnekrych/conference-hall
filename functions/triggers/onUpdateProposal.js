@@ -64,7 +64,12 @@ module.exports = functions.firestore
         subject: `[${event.name}] Talk accepted!`,
         html: talkAccepted(event, users, proposal, app.url),
         confName: event.name,
-      }))
+      })).catch((err) => {
+        console.log(`Error sending ${proposal.title}::${err}`)
+        delete proposal.emailSent
+        proposal.state = 'submitted'
+        updateProposal(eventId, proposal)
+      })
     }
 
     // send email to rejected proposal
@@ -80,7 +85,12 @@ module.exports = functions.firestore
         subject: `[${event.name}] Talk declined`,
         html: talkRejected(event, users, proposal, app.url),
         confName: event.name,
-      }))
+      })).catch((err) => {
+        console.log(`Error sending ${proposal.title}::${err}`)
+        delete proposal.emailSent
+        proposal.state = 'submitted'
+        updateProposal(eventId, proposal)
+      })
     }
 
     return null
