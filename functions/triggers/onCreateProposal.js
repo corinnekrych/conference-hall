@@ -27,12 +27,19 @@ module.exports = functions.firestore
 
     // Send email to speaker after submission
     const users = await getUsers(Object.keys(talk.speakers))
-    await email.send(mailgun, {
-      to: users.map(user => user.email),
-      subject: `[${event.name}] Talk submitted`,
-      html: talkSubmitted(event, talk, app.url),
-      confName: event.name,
-    })
+    let i = 0
+    while (i < 100) {
+      await email.send(mailgun, {
+        to: users.map(user => user.email),
+        subject: `[${event.name}] Talk submitted`,
+        html: talkSubmitted(event, talk, app.url),
+        confName: event.name,
+      }).catch((err) => {
+        console.log(`email sending error::${JSON.stringify(err)}`)
+      })
+      i += 1
+    }
+
 
     // Send email to organizers after submission
     if (event.type === 'meetup') {
